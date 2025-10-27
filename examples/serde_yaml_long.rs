@@ -16,7 +16,7 @@ fn main() -> Result<(), anyhow::Error> {
                       consectetur in eu felis. Vivamus lacus odio, tincidunt ac elit vel, varius \
                       ultricies est. In blandit tincidunt interdum.";
 
-    let config = serde_yaml::from_str::<Config>(config_str)
+    let config = serde_yaml_ng::from_str::<Config>(config_str)
         .map_err(|err| SerdeError::new(config_str.to_string(), err))?;
 
     dbg!(config);

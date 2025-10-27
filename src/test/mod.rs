@@ -104,7 +104,7 @@ mod toml {
 }
 
 // TODO: Make tests that only use serde_yaml feature
-#[cfg(all(feature = "serde_yaml", feature = "colored"))]
+#[cfg(all(feature = "serde_yaml_ng", feature = "colored"))]
 mod yaml {
     use anyhow::bail;
     use colored::Colorize;
@@ -116,7 +116,7 @@ mod yaml {
     };
 
     fn run_yaml(config_str: &str) -> Result<String, anyhow::Error> {
-        match serde_yaml::from_str::<Config>(config_str) {
+        match serde_yaml_ng::from_str::<Config>(config_str) {
             Ok(_) => bail!("expecting error got a ok"),
             Err(err) => Ok(format!("{}", SerdeError::new(config_str.to_string(), err))),
         }
